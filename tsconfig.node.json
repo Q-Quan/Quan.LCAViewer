@@ -1,0 +1,18 @@
+{
+  "extends": "@tsconfig/node18/tsconfig.json",
+  "include": [
+    "vite.config.*",
+    "vitest.config.*",
+    "cypress.config.*",
+    "nightwatch.conf.*",
+    "playwright.config.*"
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": true,
+    "module": "esnext",
+    "moduleResolution": "Bundler",
+    "types": ["node"],
+    "target": "es2017"
+  }
+}
