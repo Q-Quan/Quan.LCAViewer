@@ -11,7 +11,7 @@ $grid-breakpoints: (
   lg: 992px,
   xl: 1200px,
   xxl: 1400px,
-  xxxl: 1900px
+  xxxl: 1880px
 );
 
 $container-max-widths: (
@@ -20,7 +20,7 @@ $container-max-widths: (
   lg: 960px,
   xl: 1140px,
   xxl: 1320px,
-  xxxl: 1820px
+  xxxl: 1800px
 );
 
 @import "bootstrap/scss/bootstrap";
@@ -33,16 +33,34 @@ header .navbar-brand {
   font-family: $headings-font-family;
 }
 
-html, body, #app {
+html, body, #app, .lca-viewer {
   height: 100%;
 }
 
-#app {
+h6 {
+  font-family: $font-family-base;
+  font-weight: 700;
+}
+
+.lca-viewer {
   display: flex;
   flex-direction: column;
   justify-content: stretch;
 
   > main {
     flex-grow: 1;
+  }
+}
+
+.form-check-input:checked {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+
+.btn-link {
+  --bs-btn-hover-color: --bs-btn-color;
+  transition: opacity 0.15s ease-in-out;
+  &:hover {
+    opacity: 0.8;
   }
 }

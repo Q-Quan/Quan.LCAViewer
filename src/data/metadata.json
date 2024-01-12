@@ -1,20 +1,35 @@
 {
+    "projectName": "Sample Project",
+    "goalScopeDescription": "These are sample life-cycle assessment results for 10.000 tkm of transportation with various lorry technologies.",
     "scenarios": {
         "ssp2base": {
             "title": "SSP2 - Base",
-            "filename": "lcia_results_remind_ssp2base_allic"
+            "filename": "Final-All-IC_LCIA-results_ssp2base"
         },
-        "pkbudg1150": {
-            "title": "SSP2 - RCP2.6",
-            "filename": "lcia_results_remind_ssp2pkbudg1150_allic"
-        },
-        "pkbudg500": {
-            "title": "SSP2 - RCP1.9",
-            "filename": "lcia_results_remind_ssp2pkbudg500_allic"
+        "ssp2pkbudg1150": {
+            "title": "SSP2 - PkBudg1150",
+            "filename": "Final-All-IC_LCIA-results_ssp2pkbudg1150"
         }
     },
-    "defaultScenario": "pkbudg1150",
-    "projectName": "South Holland Inland Shipping",
+    "yearSeparator": " - ",
+    "defaultScenario": "ssp2base",
+    "defaultImpactCategories": [
+        "EF v3.1 | climate change | global warming potential (GWP100)",
+        "EF v3.1 | acidification | accumulated exceedance (AE)",
+        "EF v3.1 | photochemical oxidant formation: human health | tropospheric ozone concentration increase",
+        "EF v3.1 | eutrophication: freshwater | fraction of nutrients reaching freshwater end compartment (P)",
+        "EF v3.1 | energy resources: non-renewable | abiotic depletion potential (ADP): fossil fuels",
+        "EF v3.1 | material resources: metals/minerals | abiotic depletion potential (ADP): elements (ultimate reserves)",
+        "EF v3.1 | land use | soil quality index",
+        "EF v3.1 | water use | user deprivation potential (deprivation-weighted water consumption)"
+    ],
+    "defaultYears": [
+        "2030",
+        "2050"
+    ],
+    "defaultAlternatives": [
+
+    ],
     "shortLabels": {
         "EF v3.1 | climate change | global warming potential (GWP100)": "Climate change",
         "EF v3.1 | acidification | accumulated exceedance (AE)": "Acidification",
@@ -24,28 +39,39 @@
         "EF v3.1 | material resources: metals/minerals | abiotic depletion potential (ADP): elements (ultimate reserves)": "Material resources: metals/minerals",
         "EF v3.1 | land use | soil quality index": "Land use",
         "EF v3.1 | water use | user deprivation potential (deprivation-weighted water consumption)": "Water use",
-        "transport, freight, inland barge, Stage I standard, MGO": "ICE.I.MGO",
-        "transport, freight, inland barge, Stage V Mitsubishi, MGO": "ICE.V.MGO",
-        "transport, freight, inland barge, Stage V Mitsubishi, hydrogen, grey": "ICE.V.H₂.G",
-        "transport, freight, inland barge, Stage V Mitsubishi, hydrogen, blue": "ICE.V.H₂.Bl",
-        "transport, freight, inland barge, Stage V Mitsubishi, hydrogen, yellow": "ICE.V.H₂.Yl",
-        "transport, freight, inland barge, HFC, grey": "HFC.H₂.G",
-        "transport, freight, inland barge, HFC, blue": "HFC.H₂.Bl",
-        "transport, freight, inland barge, HFC, yellow": "HFC.H₂.Yl",
-        "transport, freight, inland barge, battery-electric": "BE"
+        "transport, freight, lorry, battery electric, NMC-622 battery, 18t gross weight, long haul": "Battery, LH",
+        "transport, freight, lorry, battery electric, NMC-622 battery, 18t gross weight, regional delivery": "Battery, RE",
+        "transport, freight, lorry, compressed gas, 18t gross weight, EURO-VI, long haul": "Gas, LH",
+        "transport, freight, lorry, compressed gas, 18t gross weight, EURO-VI, regional delivery": "Gas, RE",
+        "transport, freight, lorry, diesel, 18t gross weight, EURO-VI, long haul": "Diesel, LH",
+        "transport, freight, lorry, diesel, 18t gross weight, EURO-VI, regional delivery": "Diesel, RE",
+        "transport, freight, lorry, fuel cell electric, 18t gross weight, long haul": "Fuel cell, LH",
+        "transport, freight, lorry, fuel cell electric, 18t gross weight, regional delivery": "Fuel cell, RE"
     },
     "longLabels": {},
+    "descriptions": {
+        "transport, freight, lorry, battery electric, NMC-622 battery, 18t gross weight, long haul": "Battery-electric, NMC-622 battery, long-haul",
+        "transport, freight, lorry, battery electric, NMC-622 battery, 18t gross weight, regional delivery": "Battery-electric, NMC-622 battery, regional delivery",
+        "transport, freight, lorry, compressed gas, 18t gross weight, EURO-VI, long haul": "EURO-VI, compressed gas, long-haul",
+        "transport, freight, lorry, compressed gas, 18t gross weight, EURO-VI, regional delivery": "EURO-VI, compressed gas, regional delivery",
+        "transport, freight, lorry, diesel, 18t gross weight, EURO-VI, long haul": "EURO-VI, diesel, long-haul",
+        "transport, freight, lorry, diesel, 18t gross weight, EURO-VI, regional delivery": "EURO-VI, diesel, regional delivery",
+        "transport, freight, lorry, fuel cell electric, 18t gross weight, long haul": "Fuel cell electric, long-haul",
+        "transport, freight, lorry, fuel cell electric, 18t gross weight, regional delivery": "Fuel cell electric, regional delivery",
+        "ssp2base": "A scenario with extrapolated development trends but no climate policies.",
+        "ssp2pkbudg1150": "A scenario with extrapolated development trends and moderate climate policies, resulting in GMST increase below 2°C."
+    },
     "colors": {
-        "yearLegend": "#00A6D6",
-        "transport, freight, inland barge, Stage I standard, MGO": "#6F1D77",
-        "transport, freight, inland barge, Stage V Mitsubishi, MGO": "#EC6842",
-        "transport, freight, inland barge, Stage V Mitsubishi, hydrogen, grey": "#AAAAAA*",
-        "transport, freight, inland barge, Stage V Mitsubishi, hydrogen, blue": "#0076C2*",
-        "transport, freight, inland barge, Stage V Mitsubishi, hydrogen, yellow": "#FFB81C*",
-        "transport, freight, inland barge, HFC, grey": "#AAAAAA",
-        "transport, freight, inland barge, HFC, blue": "#0076C2",
-        "transport, freight, inland barge, HFC, yellow": "#FFB81C",
-        "transport, freight, inland barge, battery-electric": "#009B77"
+        "theme": "#001158",
+        "yearLegend": "#001158",
+        "transport, freight, lorry, battery electric, NMC-622 battery, 18t gross weight, long haul": "#aaad00",
+        "transport, freight, lorry, battery electric, NMC-622 battery, 18t gross weight, regional delivery": "#aaad00*",
+        "transport, freight, lorry, compressed gas, 18t gross weight, EURO-VI, long haul": "#f46e32",
+        "transport, freight, lorry, compressed gas, 18t gross weight, EURO-VI, regional delivery": "#f46e32*",
+        "transport, freight, lorry, diesel, 18t gross weight, EURO-VI, long haul": "#b02079",
+        "transport, freight, lorry, diesel, 18t gross weight, EURO-VI, regional delivery": "#b02079*",
+        "transport, freight, lorry, fuel cell electric, 18t gross weight, long haul": "#5cb1eb",
+        "transport, freight, lorry, fuel cell electric, 18t gross weight, regional delivery": "#5cb1eb*"
     },
     "normalizationFactors": {
         "EF v3.1 | acidification | accumulated exceedance (AE)": 5.56E+01,
@@ -75,7 +101,7 @@
         "EF v3.1 | water use | user deprivation potential (deprivation-weighted water consumption)": 1.15E+04
     },
     "axisLabels": {
-        "EF v3.1 | acidification | accumulated exceedance (AE)": "Acidification [mol H+-eq]",
+        "EF v3.1 | acidification | accumulated exceedance (AE)": "Acidification, AE [mol H+-eq]",
         "EF v3.1 | climate change | global warming potential (GWP100)": "Climate change, GWP [kg CO₂-eq]",
         "EF v3.1 | climate change: biogenic | global warming potential (GWP100)": "CC biogenic, GWP [kg CO₂-eq]",
         "EF v3.1 | climate change: fossil | global warming potential (GWP100)": "CC fossil, GWP [kg CO₂-eq]",
@@ -86,7 +112,7 @@
         "EF v3.1 | energy resources: non-renewable | abiotic depletion potential (ADP): fossil fuels": "Resource use, fossils [MJ]",
         "EF v3.1 | eutrophication: freshwater | fraction of nutrients reaching freshwater end compartment (P)": "Eutrophication, freshw. [kg P-eq]",
         "EF v3.1 | eutrophication: marine | fraction of nutrients reaching marine end compartment (N)": "Eutrophication, marine [kg N-eq]",
-        "EF v3.1 | eutrophication: terrestrial | accumulated exceedance (AE)": "Eutrophication, terr. [mol N-eq]",
+        "EF v3.1 | eutrophication: terrestrial | accumulated exceedance (AE)": "Eutrophication, terr., AE [mol N-eq]",
         "EF v3.1 | human toxicity: carcinogenic | comparative toxic unit for human (CTUh)": "Human toxicity, carcinogenic [CTUh]",
         "EF v3.1 | human toxicity: carcinogenic, inorganics | comparative toxic unit for human (CTUh)": "Human tox., carcin., inorganics [CTUh]",
         "EF v3.1 | human toxicity: carcinogenic, organics | comparative toxic unit for human (CTUh)": "Human tox., carcin., organics [CTUh]",
@@ -95,12 +121,12 @@
         "EF v3.1 | human toxicity: non-carcinogenic, organics | comparative toxic unit for human (CTUh)": "Human tox., n.-carcin., organics [CTUh]",
         "EF v3.1 | ionising radiation: human health | human exposure efficiency relative to u235": "Ionising radiation [kBq U235-eq]",
         "EF v3.1 | land use | soil quality index": "Land use, soil quality index [pt]",
-        "EF v3.1 | material resources: metals/minerals | abiotic depletion potential (ADP): elements (ultimate reserves)": "Resource use, metal/mineral [kg Sb-eq]",
-        "EF v3.1 | ozone depletion | ozone depletion potential (ODP)": "Ozone depletion [kg CFC-11-eq]",
+        "EF v3.1 | material resources: metals/minerals | abiotic depletion potential (ADP): elements (ultimate reserves)": "Resource use, metal/mineral, ADP [kg Sb-eq]",
+        "EF v3.1 | ozone depletion | ozone depletion potential (ODP)": "Ozone depletion, ODP [kg CFC-11-eq]",
         "EF v3.1 | particulate matter formation | impact on human health": "PM formation [disease incid.]",
         "EF v3.1 | photochemical oxidant formation: human health | tropospheric ozone concentration increase": "Photoc. oxidant form. [kg NMVOC-eq]",
-        "EF v3.1 | water use | user deprivation potential (deprivation-weighted water consumption)": "Water use [m³]"
+        "EF v3.1 | water use | user deprivation potential (deprivation-weighted water consumption)": "Water use, user depriv. pot. [m³]"
     },
-    "axisLimitNormalized": 1000,
-    "axisLimitNormalizedZoomed": 200
+    "axisLimitNormalized": 3.5,
+    "axisLimitNormalizedZoomed": 1
 }

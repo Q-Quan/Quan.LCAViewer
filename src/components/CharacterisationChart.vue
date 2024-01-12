@@ -19,7 +19,8 @@ const props = defineProps<{
   ylabel: string,
   ylim: number,
   data: [],
-  sort: "byAlternative" | "byYear"
+  sort: "byAlternative" | "byYear",
+  chartKey: string
 }>()
 
 const { title, ylabel, ylim, data, sort } = toRefs(props);
@@ -84,7 +85,7 @@ const chartData = computed(() => {
   return result;
 });
 
-const chartOptions: ComputedRef<ChartOptions<"bar">> = computed(() => {
+function getChartOptions(forInModal: boolean): ChartOptions<"bar"> {
   let labelKey = (sort.value == "byAlternative") ? "title" : "year";
   let chartLabels = [... new Set(data.value.filter(x => x["visible"]).map(x => x[labelKey]))];
   return {
@@ -113,22 +114,31 @@ const chartOptions: ComputedRef<ChartOptions<"bar">> = computed(() => {
         position: 'bottom',
         labels: chartLabels,
         ticks: {
-          //display: false,
+          //display: false,,
+          font: {
+            size: forInModal ? 16 : undefined
+          }
         },
       },
       y: {
         ticks: {
-          callback: (val: number) => (val.toExponential()),
+          callback: (val: number | string) => ((val as number).toExponential()),
+          font: {
+            size: forInModal ? 16 : undefined
+          }
         },
         title: {
           text: ylabel.value,
-          display: true
+          display: true,
+          font: {
+            size: forInModal ? 16 : undefined
+          }
         },
-        max: ylim.value > 0 ? ylim.value : null
+        max: ylim.value > 0 ? ylim.value : undefined
       }
     }
   }
-}) as ComputedRef<ChartOptions<"bar">>;
+}
 
 
 const chartElement = ref(null);
@@ -153,25 +163,58 @@ const chartPlugins: ComputedRef<Plugin<"bar">[]> = computed(() => {
   }
 }) as ComputedRef<Plugin<"bar">[]>;
 
-// Update defaults
-onMounted(() => {
-  setTimeout(() => {
+// Update chart on font load
+document.fonts.addEventListener("loadingdone", () => {
     if (chartElement.value) {
       const theChart = (chartElement.value["chart"] as Chart);
       theChart.update();
     }
-  }, 100);
 });
 
 </script>
 
 <template>
   <div class="characterisation-chart">
-    <h6>
-      {{ title }}
-    </h6>
-    <Bar ref="chartElement" :options="chartOptions" :data="chartData" :plugins="chartPlugins" />
+    <div class="row gx-1">
+      <div class="col">
+        <h6>
+          {{ title }}
+        </h6>
+      </div>
+      <div class="col-auto">
+        <div class="btn-group">
+          <div class="btn btn-link btn-sm" title="Enlarge" data-bs-toggle="modal" :data-bs-target="'#chart-modal-' + chartKey">
+            <i class="fa-sharp fa-solid fa-up-right-and-down-left-from-center"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <Bar ref="chartElement" :options="getChartOptions(false)" :data="chartData" :plugins="chartPlugins" />
+    <div class="modal modal-lg" tabindex="-1" :id="'chart-modal-' + chartKey">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{{ title }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <Bar ref="modalChartElement" :options="getChartOptions(true)" :data="chartData" :plugins="chartPlugins" />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.btn-link {
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 0;
+  margin-top: -3px;
+}
+
+.row {
+  align-items: top;
+}
+</style>

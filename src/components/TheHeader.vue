@@ -9,9 +9,9 @@ const projectTitle = metadata.projectName;
   <header>
     <nav class="navbar navbar-expand-md bg-primary navbar-dark">
       <div class="container">
-        <button class="navbar-toggler border-0 px-2 me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <!-- <button class="navbar-toggler border-0 px-2 me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
-        </button>
+        </button> -->
         <a class="navbar-brand me-auto" href="#">
           <span class="fw-bold me-2">{{ appTitle }}</span> <br class="d-md-none" />
           <span class="">{{ projectTitle }}</span>
@@ -49,25 +49,22 @@ const projectTitle = metadata.projectName;
         </div> -->
       </div>
     </nav>
-    <nav class="navbar navbar-expand-md bg-light py-0">
+    <nav class="navbar navbar-expand-xs bg-light py-0" v-if="metadata.goalScopeDescription">
       <div class="container">
-        <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button> -->
+        <p class="my-3 text-dark">{{ metadata.goalScopeDescription }}</p>
+      </div>
+      <!--<div class="container">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-md-0 py-2">
             <li class="nav-item ps-0">
               <a class="nav-link active ps-0" aria-current="page" href="#">Characterisation results</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" v-tooltip="'Not implemented yet'">Contribution analysis</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="#" v-tooltip="'Not implemented yet'">Information</a>
             </li>
           </ul>
         </div> 
-      </div>
+      </div>-->
     </nav>
   </header>
 </template>
