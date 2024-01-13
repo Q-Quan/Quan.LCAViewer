@@ -10,6 +10,8 @@ Sample hosted on https://qlcav.quan.cat/?project=sample.
 
 Visualisation of characterisation and normalisation results, including the possiblity to showcase and filter on a wide array of alternatives, alternate scenarios, and multiple points in time. For an LCA practitioner, this facilitates the exploration of results and obtaining insights. For commissioners or interested parties, this can be a way to share LCA results in an interactive and easily accessible way, without the need to browse through reports or install software.
 
+Including convenient web features such as responsivity for mobile devices, info tooltips with descriptions and definitions, and pop-up modals for individual charts.
+
 
 ## How to use
 

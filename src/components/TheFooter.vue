@@ -7,7 +7,7 @@
     <nav class="navbar navbar-expand bg-dark navbar-dark py-0">
       <div class="container">
         <span class="navbar-text me-auto">
-          &copy; 2023 Quan van der Knokke
+          &copy; 2024 Quan van der Knokke
         </span>
         <ul class="navbar-nav ms-auto mb-md-0 py-2">
           <li class="nav-item ps-0">
