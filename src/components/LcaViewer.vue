@@ -2,6 +2,7 @@
 import { ref, computed, type Ref } from 'vue'
 import { capitalize } from 'lodash';
 
+import Papa from "papaparse";
 import pattern from 'patternomaly';
 
 import TheHeader from './TheHeader.vue'
@@ -10,7 +11,17 @@ import CharacterisationChart from './CharacterisationChart.vue'
 import ChartPatch from './ChartPatch.vue'
 import TooltipIcon from './TooltipIcon.vue'
 
-const metadata = (await import(`../data/metadata.json`)).default;
+import { type LcaMetadata } from "@/LcaMetadata";
+
+let project = location.pathname.split('/')[1] || 'sample';
+let metadata!: LcaMetadata;
+try {
+  const response = await fetch(`/data/${project}/metadata.json`);
+  metadata = await response.json();
+} catch (e) {
+  alert(`Oops: project data for "${project}" not found.`);
+  console.log(e);
+}
 
 const scenarios = metadata.scenarios;
 const allScenarioKeys = Object.keys(scenarios);
@@ -52,10 +63,26 @@ const getColorOrPatternWithOpacity = (hex: string, alpha: number) => {
 
 
 // CSV data is an array of objects representing the rows of the CSV, so that each row corresponds to an alternative.
+function getCsvData(filepath: string) {
+  return new Promise((resolve, reject) => {
+    Papa.parse(filepath, { 
+      download: true,
+      header: true,
+      skipEmptyLines: true,
+      complete (results: any, file: any) {
+        resolve(results.data)
+      },
+      error (err: any, file: any) {
+        reject(err)
+      }
+    })
+  })
+}
+
 let csvDatas: {[key: string]: any} = {};
 for (const scenarioKey of allScenarioKeys) {
   const filename = (scenarios as any)[scenarioKey].filename;
-  csvDatas[scenarioKey] = (await import(`../data/${filename}.csv`)).default;
+  csvDatas[scenarioKey] = await getCsvData(`/data/${project}/${filename}.csv`);
 }
 
 const csvData = computed(() => csvDatas[currentScenarioKey.value] );
@@ -80,7 +107,7 @@ const chartData = computed(() => {
       "visible": shownImpactCategoryKeys.value.includes(impactCategoryKey),
       "data": csvData.value.map((x: any) => {
         const alternativeKey = x["name"];
-        const year = x["database"].split(" - ").at(-1);
+        const year = x["database"].split(metadata.yearSeparator).at(-1);
         return {
           "value": isNormalized.value ? x[impactCategoryKey]/(metadata.normalizationFactors as any)[impactCategoryKey] : x[impactCategoryKey],
           "key": alternativeKey,
@@ -95,7 +122,6 @@ const chartData = computed(() => {
 });
 
 allAlternativeKeys = [...new Set(chartData.value[allImpactCategoryKeys[0]]["data"].map((x: { key: string }) => x.key))] as string[];
-console.log(allAlternativeKeys);
 shownAlternativeKeys.value = allAlternativeKeys.filter(x => metadata.defaultAlternatives.length > 0 ? (metadata.defaultAlternatives as string[]).includes(x) : true);
 
 const allAlternativePatches = allAlternativeKeys.map(x => {
@@ -130,7 +156,7 @@ function hexToRgb(hex: string) {
 
 <template>
   <div class="lca-viewer" :style="{'--bs-primary': primaryColor, '--bs-link-color': primaryColor, '--bs-primary-rgb': hexToRgb(primaryColor)}">
-    <TheHeader />
+    <TheHeader :metadata="metadata" />
     <main>
       <div class="container">
         <div class="row gx-5">
@@ -302,7 +328,7 @@ function hexToRgb(hex: string) {
               <div class="row gy-4">
                 <template v-for="(theChartData, chartKey) in chartData" :key="chartKey">
                   <div v-if="theChartData.visible" class="col-12 col-sm-6 col-lg-4 col-xxl-4 col-xxxl-3">
-                    <CharacterisationChart :title="theChartData.title"
+                    <CharacterisationChart :metadata="metadata" :title="theChartData.title"
                       :chartKey="chartKey.toString().replace(/[^A-Z0-9]/ig, '_')"
                       :ylabel="theChartData.ylabel" :ylim="theChartData.ylim" :data="theChartData.data"
                       :sort="sortCharts" />

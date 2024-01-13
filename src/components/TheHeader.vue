@@ -1,8 +1,15 @@
 <script setup lang="ts">
-const metadata = (await import(`../data/metadata.json`)).default;
+import { toRefs } from 'vue'
+import { type LcaMetadata } from "@/LcaMetadata";
+
+const props = defineProps<{
+  metadata: LcaMetadata,
+}>()
+
+const { metadata } = toRefs(props);
 
 const appTitle = "Quan's LCA Viewer";
-const projectTitle = metadata.projectName;
+const projectTitle = metadata.value.projectName;
 </script>
 
 <template>

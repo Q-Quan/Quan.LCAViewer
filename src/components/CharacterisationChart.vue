@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, type Ref, toRefs, watch, onMounted, type ComputedRef } from 'vue'
 import { capitalize } from 'lodash';
+import { type LcaMetadata } from "@/LcaMetadata";
 
 import Chart from 'chart.js/auto';
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, type ChartOptions, type Plugin } from 'chart.js'
@@ -11,10 +12,9 @@ Chart.defaults.color = "black";
 import pattern from 'patternomaly';
 import { Bar } from 'vue-chartjs';
 
-const metadata = (await import(`../data/metadata.json`)).default;
-
 
 const props = defineProps<{
+  metadata: LcaMetadata,
   title: string,
   ylabel: string,
   ylim: number,
@@ -23,7 +23,7 @@ const props = defineProps<{
   chartKey: string
 }>()
 
-const { title, ylabel, ylim, data, sort } = toRefs(props);
+const { metadata, title, ylabel, ylim, data, sort } = toRefs(props);
 
 const chartDataTest = ref({
   labels: ['January', 'February', 'March'],
@@ -42,7 +42,7 @@ const getColorOrPatternWithOpacity = (hex: string, alpha: number) => {
 }
 
 function getFriendlyTitle(x: string) {
-  return (metadata.shortLabels as any)[x] || capitalize(x.split(" | ")[1]);
+  return (metadata.value.shortLabels as any)[x] || capitalize(x.split(" | ")[1]);
 }
 
 const chartData = computed(() => {
@@ -50,7 +50,7 @@ const chartData = computed(() => {
   let years = [... new Set(data.value.filter(x => x["visible"]).map(x => x["year"]))];
   let alternativeKeys = [... new Set(data.value.filter(x => x["visible"]).map(x => x["key"]))];
   let alternativeTitles = [... new Set(data.value.filter(x => x["visible"]).map(x => x["title"]))];
-  let alternativeColors = alternativeKeys.map(x => metadata.colors[x] || "#FFB81C");
+  let alternativeColors = alternativeKeys.map(x => metadata.value.colors[x] || "#FFB81C");
   if (sort.value == "byAlternative") {
     result = {
       labels: alternativeTitles,
@@ -59,7 +59,7 @@ const chartData = computed(() => {
         return {
           data: data.value.filter(x => x["visible"]).filter(theData => theData["year"] == year).map(theData => theData["value"]),
           label: year,
-          legendBackgroundColor: getColorOrPatternWithOpacity(metadata.colors.yearLegend, opacity),
+          legendBackgroundColor: getColorOrPatternWithOpacity(metadata.value.colors.yearLegend, opacity),
           backgroundColor: function (context: any) {
             const color = alternativeColors[context.dataIndex];
             return getColorOrPatternWithOpacity(color, opacity);
