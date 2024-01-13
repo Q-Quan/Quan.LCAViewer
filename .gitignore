@@ -28,5 +28,4 @@ coverage
 *.sw?
 
 *.tsbuildinfo
-src/data/mep
 public/data/mep
