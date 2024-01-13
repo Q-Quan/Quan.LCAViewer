@@ -13,7 +13,8 @@ import TooltipIcon from './TooltipIcon.vue'
 
 import { type LcaMetadata } from "@/LcaMetadata";
 
-let project = location.pathname.split('/')[1] || 'sample';
+let project = new URLSearchParams(window.location.search).get("project") || "sample";
+
 let metadata!: LcaMetadata;
 try {
   const response = await fetch(`/data/${project}/metadata.json`);

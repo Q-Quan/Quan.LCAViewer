@@ -15,7 +15,7 @@ Visualisation of characterisation and normalisation results, including the possi
 
 LCA projects to visualise are hosted under `/data/project_name`. The file `/data/project_name/metadata.json` contains the configuration to load, including the data file paths (characterisation data CSV exports), setup and labelling of alternatives and impact categories, and theming.
 
-A project can be loaded in the LCA Viewer by appending `/project_name` to the URL.
+A project can be loaded in the LCA Viewer by appending `?project=project_name` to the URL.
 
 
 ## Project Setup
