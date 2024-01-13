@@ -1,8 +1,8 @@
 # Quan.LCAViewer
 
-LCA Viewer, a small web application, for visualising, browsing and sharing LCA results exported from the [Activity Browser](https://github.com/LCA-ActivityBrowser/activity-browser).
+LCA Viewer, a web application for visualising, browsing and sharing LCA results exported from the [Activity Browser](https://github.com/LCA-ActivityBrowser/activity-browser). Lightweight (< 200 KB, excluding project data), easy to use and host, using [Vue](https://github.com/vuejs) and [Chart.js](https://github.com/chartjs).
 
-Sample hosted on https://qlcav.quan.cat/sample.
+Sample hosted on https://qlcav.quan.cat/?project=sample.
 
 ## Features
 
