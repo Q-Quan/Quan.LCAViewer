@@ -1,6 +1,6 @@
 # Quan.LCAViewer
 
-An LCA Viewer, for visualising, browsing and sharing LCA results exported from the [Activity Browser](https://github.com/LCA-ActivityBrowser/activity-browser).
+LCA Viewer, a small web application, for visualising, browsing and sharing LCA results exported from the [Activity Browser](https://github.com/LCA-ActivityBrowser/activity-browser).
 
 Sample hosted on https://qlcav.quan.cat/sample.
 
@@ -26,11 +26,15 @@ npm install
 
 ### Compile and Hot-Reload for Development
 
+Run the LCA Viewer locally to explore your own LCA data.
+
 ```sh
 npm run dev
 ```
 
 ### Type-Check, Compile and Minify for Production
+
+Build and host the LCA Viewer so project data can be shared. Project data is not bundled, so data can be updated without needing to rebuild and host the LCA Viewer itself.
 
 ```sh
 npm run build
