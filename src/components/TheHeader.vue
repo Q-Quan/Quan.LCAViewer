@@ -10,6 +10,8 @@ const { metadata } = toRefs(props);
 
 const appTitle = "Quan's LCA Viewer";
 const projectTitle = metadata.value.projectName;
+
+document.title = projectTitle + " · " + appTitle;
 </script>
 
 <template>
