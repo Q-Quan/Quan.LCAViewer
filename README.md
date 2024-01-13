@@ -1,6 +1,6 @@
 # Quan.LCAViewer
 
-LCA Viewer, a web application for visualising, browsing and sharing LCA results exported from the [Activity Browser](https://github.com/LCA-ActivityBrowser/activity-browser). Lightweight (< 200 KB, excluding project data), easy to use and host, using [Vue](https://github.com/vuejs) and [Chart.js](https://github.com/chartjs).
+LCA Viewer, a web application for visualising, browsing and sharing LCA results exported from the [Activity Browser](https://github.com/LCA-ActivityBrowser/activity-browser). Lightweight (~800KB, excluding project data), easy to use and host, using [Vue](https://github.com/vuejs) and [Chart.js](https://github.com/chartjs).
 
 Sample hosted on https://qlcav.quan.cat/?project=sample.
 
@@ -47,3 +47,7 @@ npm run build
 ```sh
 npm run lint
 ```
+
+## Background
+
+Developed by [Quan van der Knokke](https://quan.vanderknokke.nl/) as part of the MSc Industrial Ecology thesis project *Life-Cycle Assessment for Sustainable Inland Shipping on South Holland's Waterways* at TU Delft / Leiden University.
