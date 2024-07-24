@@ -50,4 +50,4 @@ npm run lint
 
 ## Background
 
-Developed by [Quan van der Knokke](https://quan.vanderknokke.nl/) as part of the MSc Industrial Ecology thesis project *Life-Cycle Assessment for Sustainable Inland Shipping on South Holland's Waterways* at TU Delft / Leiden University.
+Developed by [Quan van der Knokke](https://quan.vanderknokke.nl/) as part of the MSc Industrial Ecology thesis project [*Life-Cycle Assessment for Sustainable Inland Shipping on South Holland's Waterways*](https://static.quan.cat/inlandshipping) at TU Delft / Leiden University.
