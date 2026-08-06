@@ -8,7 +8,7 @@ const props = defineProps<{
 </script>
 <template>
     <span class="btn btn-link px-0 py-0" v-tooltip="text">
-        <i class="fa-sharp fa-regular fa-circle-question"></i>
+        <i class="fa-solid fa-circle-question"></i>
     </span>
 </template>
 <style scoped>

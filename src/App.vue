@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import Vue from 'vue'
-import LcaViewer from "./components/LcaViewer.vue";
+import SuschFlowchart from "./components/SuschFlowchart.vue";
 </script>
 
 <template>
   <Suspense>
-    <LcaViewer />
+    <SuschFlowchart />
   </Suspense>
 </template>
 
